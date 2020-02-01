@@ -2,6 +2,29 @@
 
 System allows you to connect to Harvest to pull in your hours and create an invoice that will be able to be downloaded or emailed.
 
+## Inspiration
+
+I've spent a lot of time engineering stupid shit for the sake of learning a new framework, language, or best practice.  Only difference in this one is that I am opening it up to my fellow contractors. Vue.js is just something I have never spent time getting to know, but it get's RAVE reviews, so here we are.
+
+It was brought to my attention today that we have to invoice and put hours into Harvest.  I've owned my own business, and totally get it, but it's very redundant.  So lets over engineer the FUCK out of this.  
+
+Here are the requirements:
+
+1. We host this on Netlify and utilize the [Netlify Functions](https://www.netlify.com/products/functions/). 
+* For oAuth2 token exchange
+* Pulling timesheets from 
+3. We use puppeteer to create a download or PDF
+
+### Netlify Functions
+
+http://localhost:9000/.netlify/functions/harvest-connect
+
+### Todos
+
+- [ ] Setup scafolding
+- [ ] Setup hygen for templating
+- [ ] 
+
 #### API's and Import Docs
 
 Harvest: https://help.getharvest.com/api-v2/

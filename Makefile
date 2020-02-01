@@ -21,7 +21,7 @@ serve:
 build:
 	yarn build
 
-test-unit
+test-unit:
 	yarn test:unit
 
 build-netlify:
@@ -29,6 +29,9 @@ build-netlify:
 
 netlify:
 	yarn start:lambda
+
+netlify-connect:
+	yarn start:lambda:connect
 
 ngrok:
 	ngrok http 8080 -subdomain=rocket-invoice
