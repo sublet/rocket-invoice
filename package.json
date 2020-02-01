@@ -1,12 +1,20 @@
 {
   "name": "rocket-invoice",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prezip": "rm -rf lambda-build && mkdir lambda-build",
+    "zip": "cd src/lambda/resume-download && npm install && chmod -R 777 node_modules && zip -r resume-download.zip *",
+    "postzip": "mv src/lambda/resume-download/resume-download.zip lambda-build",
+    "prebuild": "npm run zip",
+    "start:lambda": "netlify-lambda serve src/lambda",
+    "build:lambda": "netlify-lambda build src/lambda",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "newinstall": "yarn install --modules-folder ./directory_location"
   },
   "dependencies": {
     "core-js": "^3.4.4",
@@ -29,7 +37,9 @@
     "chai": "^4.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "hygen": "^5.0.3",
     "node-sass": "^4.12.0",
+    "puppeteer": "^2.0.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   }
