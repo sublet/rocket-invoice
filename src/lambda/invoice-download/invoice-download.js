@@ -3,6 +3,8 @@
 
 // ?download=true&token=1777746.at.vFOjQFR4MxM2S8bmfX9CiBOBYJc-vkaxZmU9-YEzZViTEsyA02a3aOTu-Ew8nJQUCspCD1WbYmKxNAXTePONJQ&scope=harvest:279302&from=2020-01-01&to=2020-01-31&rate=140
 
+// https://rocket-invoices.netlify.com/.netlify/functions/invoice-download?token=1777746.at.cwVMF9Qm_wfoAmEkAC3sLK4-o6Y7L4fdVDa255HVQNTMygL8q1dxzpNkG8WfjnzRKJeKUYR6V_sV1JWutpRkgg&scope=harvest:279302&from=2020-01-01&to=2020-01-31&rate=140
+
 require('dotenv').config()
 
 const chromium = require('chrome-aws-lambda')
