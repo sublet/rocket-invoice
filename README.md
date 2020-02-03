@@ -1,29 +1,24 @@
-# rocket-invoice
+# Rocket Invoice - (For contractors)
 
-System allows you to connect to Harvest to pull in your hours and create an invoice that will be able to be downloaded or emailed.
+This system allows you to connect to Harvest to pull in your hours and create an invoice that will be able to be downloaded or emailed, (eventually.)
 
 ## Inspiration
 
 I've spent a lot of time engineering stupid shit for the sake of learning a new framework, language, or best practice.  Only difference in this one is that I am opening it up to my fellow contractors. Vue.js is just something I have never spent time getting to know, but it get's RAVE reviews, so here we are.
 
-It was brought to my attention today that we have to invoice and put hours into Harvest.  I've owned my own business, and totally get it, but it's very redundant.  So lets over engineer the FUCK out of this.  
+It was brought to my attention today that we have to not only put in our hours into Harvest, but also send invoices.  In my book, that is way too much work, so let's over engineer the hell out of a solution and learn something in the process.
+
+__IMPORTANT:__ I am not knocking this new practice, I've owned my own business, and totally get it...but it's very redundant.
 
 Here are the requirements:
 
-1. We host this on Netlify and utilize the [Netlify Functions](https://www.netlify.com/products/functions/). 
-* For oAuth2 token exchange
-* Pulling timesheets from 
-3. We use puppeteer to create a download or PDF
+1. We host this on Netlify and utilize the [Netlify Functions](https://www.netlify.com/products/functions/).
+2. We use puppeteer to create a download or PDF
+3. Eventualy we save these PDF's to [Netlify Large Media](https://www.netlify.com/products/large-media/).
 
 ### Netlify Functions
 
 http://localhost:9000/.netlify/functions/harvest-connect
-
-### Todos
-
-- [ ] Setup scafolding
-- [ ] Setup hygen for templating
-- [ ] 
 
 #### API's and Import Docs
 
