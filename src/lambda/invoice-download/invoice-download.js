@@ -10,7 +10,7 @@
 const chromium = require('chrome-aws-lambda')
 const puppeteer = require('puppeteer-core')
 
-let url = process.env.VUE_APP_PUPPETEER_SITE
+let HOST_URI = process.env.VUE_APP_PUPPETEER_SITE
 
 exports.handler = async (event, context, callback) => {
   try {
@@ -22,8 +22,9 @@ exports.handler = async (event, context, callback) => {
     if (!to) throw new Error('You did not provide a to.')
     if (!rate) throw new Error('You did not provide a rate.')
 
-    url = `${url}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}`
+    let url = `${HOST_URI}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}`
 
+    console.log('Hitting this HOST_URI: ', HOST_URI)
     console.log('Hitting this URL: ', url)
 
     let chromiumPath = './node_modules/puppeteer/.local-chromium/mac-706915/chrome-mac/Chromium.app'
