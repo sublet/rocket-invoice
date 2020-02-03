@@ -18,16 +18,11 @@ export default {
   props: {
     msg: String
   },
-  data () {
-    return {
-      clientId: process.env.HARVEST_CLIENT_ID
-    }
-  },
   methods: {
     login () {
       const harvest = new Harvest({
-        CLIENT_ID: 'en2llbeAVB9snezJmGVuisTS',
-        REDIRECT_URI: 'http://localhost:8080'
+        CLIENT_ID: process.env.VUE_APP_HARVEST_CLIENT_ID,
+        REDIRECT_URI: process.env.VUE_APP_HARVEST_REDIRECT_URI
       })
       const url = harvest.getUserURL.replace('response_type=token', 'response_type=code')
       window.location = url

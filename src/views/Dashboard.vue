@@ -1,14 +1,14 @@
 
 <template>
 <div id="invoice">
-  <h1>Magical Invoice</h1>
+  <h1>My Harvest Timesheet as an Invoice</h1>
   <header class="wrapper" v-if="accountInfo !== null">
     <div>
       {{ accountInfo.first_name }} {{ accountInfo.last_name }}<br />
       {{ accountInfo.email }}
     </div>
-    <div>
-      IMAGE
+    <div style="text-align: center">
+      HOW DO I GET<br />MY CAT PIC HERE?
     </div>
   </header>
   <section class="wrapper">

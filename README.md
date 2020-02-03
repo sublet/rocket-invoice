@@ -10,7 +10,7 @@ It was brought to my attention today that we have to not only put in our hours i
 
 __IMPORTANT:__ I am not knocking this new practice, I've owned my own business, and totally get it...but it's very redundant.
 
-Here are the requirements:
+#### Here are the requirements:
 
 1. We host this on Netlify and utilize the [Netlify Functions](https://www.netlify.com/products/functions/).
 2. We use puppeteer to create a download or PDF
