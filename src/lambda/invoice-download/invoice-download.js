@@ -5,10 +5,12 @@
 
 // https://rocket-invoices.netlify.com/.netlify/functions/invoice-download?token=1777746.at.cwVMF9Qm_wfoAmEkAC3sLK4-o6Y7L4fdVDa255HVQNTMygL8q1dxzpNkG8WfjnzRKJeKUYR6V_sV1JWutpRkgg&scope=harvest:279302&from=2020-01-01&to=2020-01-31&rate=140
 
-require('dotenv').config()
+// require('dotenv').config()
 
 const chromium = require('chrome-aws-lambda')
 const puppeteer = require('puppeteer-core')
+
+console.log(process.env)
 
 let url = 'http://localhost:8080'
 if (process.env.NODE_ENV === 'production') {
