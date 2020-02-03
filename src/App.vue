@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     setAuthenticated (status) {
-      console.log('Setting authenticated')
       this.authenticated = status
     },
     logout () {

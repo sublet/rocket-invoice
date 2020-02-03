@@ -129,8 +129,6 @@ export default {
     async fetchLineItems () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      console.log(process.env)
-
       const response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
       if (response && response.status === 200) {
         const data = await response.json()
