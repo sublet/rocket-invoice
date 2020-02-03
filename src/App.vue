@@ -30,7 +30,7 @@ export default {
     } else {
       let loginParams = null
       if (code && scope) {
-        const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?code=${code}&scope=${scope}&type=connect`)
+        const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}?code=${code}&scope=${scope}&type=connect`)
         if (response && response.status === 200) {
           const data = await response.json()
           if (data.access_token) {

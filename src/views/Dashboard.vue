@@ -97,14 +97,14 @@ export default {
 
     let response
 
-    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=accountInfo`)
+    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}?accessToken=${token}&scope=${scope}&type=accountInfo`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.accountInfo = data.user
       // console.log(data.user)
     }
 
-    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.lineItems = data.time_entries
@@ -136,14 +136,14 @@ export default {
     getDownloadLink () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      return `${process.env.VUE_APP_DOWNLOAD_LAMBDA}/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`
+      return `${process.env.VUE_APP_DOWNLOAD_LAMBDA}?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`
     }
   },
   methods: {
     async fetchLineItems () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+      const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
       if (response && response.status === 200) {
         const data = await response.json()
         this.lineItems = data.time_entries
