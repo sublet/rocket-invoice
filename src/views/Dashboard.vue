@@ -30,13 +30,11 @@
         <td>${{ item.rate }}</td>
         <td>${{ item.total }}</td>
       </tr>
+      <tr>
+        <th colspan="4">Grand Total</th>
+        <th>${{ getGrandTotal }}</th>
+      </tr>
       </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="4">Grand Total</th>
-          <th>${{ getGrandTotal }}</th>
-        </tr>
-      </tfoot>
     </table>
   </section>
   <div class="floatingFooter" v-if="!isDownload">
@@ -159,7 +157,7 @@ export default {
     width: 100%;
     max-width: 1000px;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1000px) {
       padding: 0 2rem;
     }
   }
