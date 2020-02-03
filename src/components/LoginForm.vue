@@ -1,10 +1,11 @@
 
 <template>
-  <div class="">
-    <h1>Login Form</h1>
+  <div class="loginForm">
+    <img src="https://www.rocketinsights.com/images/rocket_partofdept_logo.svg" />
+    <p>Welcome to Rocket Invoice</p>
+    <p>A passive aggressive response to the redundancy that has fallen onto contractors, and an excuse to play with, and learn new technology.</p>
     <div>
-      <label>Email / Username</label>
-      <button type="button" v-on:click="login()">Login</button>
+      <button type="button" class="butt" v-on:click="login()">Login Using Harvest</button>
     </div>
   </div>
 </template>
@@ -33,5 +34,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.loginForm {
+  width: 500px;
 
+  div {
+    margin-top: 4rem;
+  }
+}
+.butt {
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: .85rem;
+  border: 0;
+  background: #333;
+  color: #FFF;
+  text-transform: uppercase;
+}
 </style>

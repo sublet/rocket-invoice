@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="https://www.rocketinsights.com/images/rocket_partofdept_logo.svg">
+    <img class="appLogo" alt="Vue logo" src="https://www.rocketinsights.com/images/rocket_partofdept_logo.svg">
     <router-view @authenticated="setAuthenticated" />
   </div>
 </template>
@@ -75,6 +75,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+body.template-home {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .appLogo {
+    display: none;
+  }
 }
 
 #nav {
