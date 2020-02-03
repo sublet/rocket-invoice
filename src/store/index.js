@@ -44,6 +44,14 @@ export default new Vuex.Store({
       } else {
         state.authenticated = false
       }
+    },
+    logOut (state) {
+      state.token = null
+      state.scope = null
+      state.expires = null
+      state.refresh = null
+      state.currentTs = null
+      state.authenticated = false
     }
   },
   actions: {

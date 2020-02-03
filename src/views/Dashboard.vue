@@ -51,9 +51,10 @@
         <label>Date To</label>
         <input v-model="dateTo">
       </div>
-      <div class="dataRow__item">
+      <div class="dataRow__item dataRow__item--actions">
         <button class="butt" v-on:click="fetchLineItems()">Update</button>
         <a v-bind:href="getDownloadLink" target="_blank" class="butt">Download</a>
+        <button class="butt" v-on:click="logOut()">Log Out</button>
       </div>
     </div>
   </div>
@@ -146,6 +147,13 @@ export default {
         const data = await response.json()
         this.lineItems = data.time_entries
       }
+    },
+    logOut () {
+      const { token, scope } = this.$store.getters.tokenInfo
+
+      this.$store.commit('logOut')
+      localStorage.removeItem('userToken')
+      this.$router.push('/')
     }
   }
 }
@@ -185,13 +193,16 @@ export default {
     justify-content: space-between;
     align-items: center;
     &__item {
-      width: 20%;
+      width: 18%;
 
       &:last-child {
-        width: 25%;
+        width: 35%;
 
-        a {
+        .butt {
           margin-left: .5rem;
+          &:first-child {
+            margin-left: 0;
+          }
         }
       }
 
@@ -206,7 +217,7 @@ export default {
         padding: 10px;
         font-size: .85rem;
         border: 1px solid #CCC;
-        background: #FAFAFA;
+        background: #EFEFEF;
         outline: none;
         border-radius: 4px;
 
@@ -214,8 +225,14 @@ export default {
           background: #FFF;
         }
       }
+
+      &--actions {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -259,9 +276,11 @@ export default {
   }
 
   .butt {
-    padding: 6px 15px;
+    display: inline-block;
+    padding: 10px 15px;
     border-radius: 4px;
     font-size: 1.25rem;
+    line-height: 1.25rem;
     border: 0;
     background: #333;
     color: #FFF;
