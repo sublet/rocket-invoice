@@ -83,19 +83,12 @@ export default {
   },
   async mounted () {
     const queryParams = this.$route.query
-    const tokenInfo = this.$store.getters.tokenInfo
+    const { token, scope } = this.$store.getters.tokenInfo
 
-    let token, scope
     if (queryParams.download) {
-      token = queryParams.token
-      scope = queryParams.scope
       this.dateFrom = queryParams.from
       this.dateTo = queryParams.to
       this.hourlyRate = queryParams.rate
-      console.log('queryParams: ', queryParams)
-    } else {
-      token = tokenInfo.token
-      scope = tokenInfo.scope
     }
 
     // console.log(this.$store.getters.tokenInfo)

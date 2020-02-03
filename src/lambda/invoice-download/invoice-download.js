@@ -22,8 +22,6 @@ exports.handler = async (event, context, callback) => {
 
     url = `${url}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}`
 
-    console.log('#### URL: ', url)
-
     let chromiumPath = './node_modules/puppeteer/.local-chromium/mac-706915/chrome-mac/Chromium.app'
     if (process.env.NODE_ENV === 'production') {
       chromiumPath = await chromium.executablePath
