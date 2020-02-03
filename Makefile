@@ -33,6 +33,9 @@ netlify:
 netlify-harvest:
 	yarn start:lambda:harvest
 
+netlify-download:
+	yarn start:lambda:download
+
 ngrok:
 	ngrok http 8080 -subdomain=rocket-invoice
 

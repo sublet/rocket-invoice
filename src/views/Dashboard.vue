@@ -63,7 +63,9 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 
+import dotenv from 'dotenv'
 import moment from 'moment'
 import numeral from 'numeral'
 
@@ -86,14 +88,14 @@ export default {
 
     let response
 
-    response = await fetch(`http://localhost:9000/harvest?accessToken=${token}&scope=${scope}&type=accountInfo`)
+    response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=accountInfo`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.accountInfo = data.user
       // console.log(data.user)
     }
 
-    response = await fetch(`http://localhost:9000/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+    response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.lineItems = data.time_entries
@@ -127,14 +129,22 @@ export default {
     async fetchLineItems () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      const response = await fetch(`http://localhost:9000/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+      console.log(process.env)
+
+      const response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
       if (response && response.status === 200) {
         const data = await response.json()
         this.lineItems = data.time_entries
       }
     },
-    downloadPdf () {
-      console.log('Test')
+    async downloadPdf () {
+      const { token, scope } = this.$store.getters.tokenInfo
+
+      const response = await fetch(`http://localhost:9002/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`)
+      if (response && response.status === 200) {
+        const data = await response.json()
+        this.lineItems = data.time_entries
+      }
     }
   }
 }
