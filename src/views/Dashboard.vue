@@ -30,9 +30,9 @@
         <td>${{ item.rate }}</td>
         <td>${{ item.total }}</td>
       </tr>
-      <tr>
-        <th colspan="4">Grand Total</th>
-        <th>${{ getGrandTotal }}</th>
+      <tr class="total">
+        <td colspan="4">Grand Total</td>
+        <td>${{ getGrandTotal }}</td>
       </tr>
       </tbody>
     </table>
@@ -232,13 +232,15 @@ export default {
       }
     }
 
-    tfoot {
-      tr {
-        background: #424242;
-        color: #FFF;
-      }
-      th:first-child {
+    tr.total {
+      background: #424242;
+      color: #FFF;
+      font-weight: 700;
+      td:first-child {
         text-align: right;
+      }
+      td:last-child {
+        text-align: center;
       }
     }
   }
