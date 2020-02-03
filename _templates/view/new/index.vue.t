@@ -12,15 +12,15 @@ to: src/views/<%= name %>.vue
 </template>
 
 <script>
-  export default {
-    name: '<%= name %>',
-    data() {
-      return {};
-    }
+export default {
+  name: '<%= name %>',
+  data () {
+    return {}
   }
+}
 </script>
 
-<style scoped>
+<style lang="scss">
   #newPage {
     background-color: #FFFFFF;
     border: 1px solid #CCCCCC;

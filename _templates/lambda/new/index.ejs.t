@@ -1,5 +1,5 @@
 ---
-to: src/lambda/<%= name %>/index.js
+to: src/lambda/<%= name %>.js
 ---
 // src/lambda/<%= name %>/index.js
 

@@ -1,8 +1,5 @@
----
-to: src/lambda/<%= name %>/package.json
----
 {
-  "name": "<%= name %>",
+  "name": "harvest",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,5 +8,9 @@ to: src/lambda/<%= name %>/package.json
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fetch-to-curl": "^0.3.0",
+    "harvest-v2": "^1.2.0"
+  }
 }

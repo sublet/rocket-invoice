@@ -9,10 +9,15 @@ to: src/components/<%= name %>.vue
 </template>
 
 <script>
+
 export default {
   name: '<%= name %>',
   props: {
     msg: String
+  },
+  data: {
+  },
+  methods: {
   }
 }
 </script>

@@ -30,8 +30,19 @@ build-netlify:
 netlify:
 	yarn start:lambda
 
-netlify-connect:
-	yarn start:lambda:connect
+netlify-harvest:
+	yarn start:lambda:harvest
 
 ngrok:
 	ngrok http 8080 -subdomain=rocket-invoice
+
+# LAMBDA_DIR = src/lambda
+
+# zip:
+# 	rm -rf lambda-build
+# 	mkdir lambda-build
+# 	@for f in $(shell ls ${LAMBDA_DIR}); do \
+# 		cd "${LAMBDA_DIR}/$${f}" ; \
+# 	done
+	# cd src/lambda/resume-download && npm install && chmod -R 777 node_modules && zip -r resume-download.zip *
+  # mv src/lambda/resume-download/resume-download.zip lambda-build

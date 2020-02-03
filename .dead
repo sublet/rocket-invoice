@@ -1,0 +1,11 @@
+curl "https://id.getharvest.com/api/v2/projects" \
+  -H "Authorization: Bearer 1777746.at.FAlMcQI0e4l0d4XdKz-VZMvDZy8k3Yn5fPdke_MyCPc4nw8oajThOlgLjPhEo5rPqSe4hbz_7iNcDzmJG4-nZA" \
+  -H "User-Agent: Rocket Test (jeffhunter@rocketinsights.com)" \
+  -H "Harvest-Account-ID: 279302" \
+  -H "User-Agent: Harvest API" \
+  -H "Content-Type: application/json"
+
+curl "https://api.harvestapp.com/v2/time_entries" \
+  -H "Authorization: Bearer 1777746.at.FAlMcQI0e4l0d4XdKz-VZMvDZy8k3Yn5fPdke_MyCPc4nw8oajThOlgLjPhEo5rPqSe4hbz_7iNcDzmJG4-nZA" \
+  -H "Harvest-Account-ID: 279302" \
+  -H "User-Agent: Harvest API"
