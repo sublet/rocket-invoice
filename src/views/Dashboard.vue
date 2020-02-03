@@ -39,7 +39,7 @@
       </tfoot>
     </table>
   </section>
-  <div class="floatingFooter">
+  <div class="floatingFooter" v-if="!isDownload">
     <div class="dataRow">
       <div class="dataRow__item">
         <label>Hourly Rate</label>
@@ -78,7 +78,8 @@ export default {
       hourlyRate: 90,
       accountInfo: null,
       lineItems: null,
-      grandTotal: 0
+      grandTotal: 0,
+      isDownload: false
     }
   },
   async mounted () {
@@ -89,6 +90,7 @@ export default {
       this.dateFrom = queryParams.from
       this.dateTo = queryParams.to
       this.hourlyRate = queryParams.rate
+      this.isDownload = true
     }
 
     // console.log(this.$store.getters.tokenInfo)
@@ -160,6 +162,10 @@ export default {
     margin: 0 auto;
     width: 100%;
     max-width: 1000px;
+
+    @media screen and (max-width: 800px) {
+      padding: 0 2rem;
+    }
   }
 
   #invoice {

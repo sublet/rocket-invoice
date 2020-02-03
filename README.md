@@ -18,7 +18,8 @@ Here are the requirements:
 
 ### Netlify Functions
 
-http://localhost:9000/.netlify/functions/harvest-connect
+http://localhost:9000/.netlify/functions/harvest
+http://localhost:9000/.netlify/functions/invoice-download
 
 #### API's and Import Docs
 
@@ -60,6 +61,10 @@ make lint
 ```
 
 #### Help me!
+
+Want to help?  Come get some. 
+
+https://rocket-invoices.netlify.com
 
 ```
 cp env.sample .env
