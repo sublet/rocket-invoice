@@ -82,20 +82,34 @@ export default {
     }
   },
   async mounted () {
-    const { token, scope } = this.$store.getters.tokenInfo
+    const queryParams = this.$route.query
+    const tokenInfo = this.$store.getters.tokenInfo
 
-    // console.log(from, to)
+    let token, scope
+    if (queryParams.download) {
+      token = queryParams.token
+      scope = queryParams.scope
+      this.dateFrom = queryParams.from
+      this.dateTo = queryParams.to
+      this.hourlyRate = queryParams.rate
+      console.log('queryParams: ', queryParams)
+    } else {
+      token = tokenInfo.token
+      scope = tokenInfo.scope
+    }
+
+    // console.log(this.$store.getters.tokenInfo)
 
     let response
 
-    response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=accountInfo`)
+    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=accountInfo`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.accountInfo = data.user
       // console.log(data.user)
     }
 
-    response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+    response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.lineItems = data.time_entries
@@ -129,7 +143,7 @@ export default {
     async fetchLineItems () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      const response = await fetch(`http://localhost:9001/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
+      const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
       if (response && response.status === 200) {
         const data = await response.json()
         this.lineItems = data.time_entries
@@ -138,7 +152,7 @@ export default {
     async downloadPdf () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      const response = await fetch(`http://localhost:9002/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`)
+      const response = await fetch(`${process.env.VUE_APP_DOWNLOAD_LAMBDA}/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`)
       if (response && response.status === 200) {
         const data = await response.json()
         this.lineItems = data.time_entries

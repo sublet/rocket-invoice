@@ -14,34 +14,46 @@ export default {
     }
   },
   async mounted () {
-    const { code, scope } = this.$route.query
+    const { download, code, scope } = this.$route.query
 
-    let loginParams = null
-    if (code && scope) {
-      const response = await fetch(`http://localhost:9000/harvest?code=${code}&scope=${scope}&type=connect`)
-      if (response && response.status === 200) {
-        const data = await response.json()
-        if (data.access_token) {
-          loginParams = {
-            accessToken: data.access_token,
-            scope: data.scope,
-            expiresIn: data.expires_in,
-            refreshToken: data.refresh_token
+    if (download) {
+      console.log('Downloaded...')
+      const { token, scope, from, to, rate } = this.$route.query
+      const loginParams = {
+        accessToken: token,
+        scope: scope
+      }
+      const query = { download: 'true', token, scope, from, to, rate }
+      this.$store.commit('updateLoginInfo', loginParams)
+      this.$router.push({ path: `dashboard`, query })
+    } else {
+      let loginParams = null
+      if (code && scope) {
+        const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?code=${code}&scope=${scope}&type=connect`)
+        if (response && response.status === 200) {
+          const data = await response.json()
+          if (data.access_token) {
+            loginParams = {
+              accessToken: data.access_token,
+              scope: data.scope,
+              expiresIn: data.expires_in,
+              refreshToken: data.refresh_token
+            }
+            localStorage.setItem('userToken', JSON.stringify(loginParams))
           }
-          localStorage.setItem('userToken', JSON.stringify(loginParams))
+        }
+      } else {
+        // Grab local storage token and dump into application...
+        const userTokenItem = localStorage.getItem('userToken')
+        if (userTokenItem) {
+          loginParams = JSON.parse(userTokenItem)
         }
       }
-    } else {
-      // Grab local storage token and dump into application...
-      const userTokenItem = localStorage.getItem('userToken')
-      if (userTokenItem) {
-        loginParams = JSON.parse(userTokenItem)
-      }
-    }
 
-    if (loginParams) {
-      this.$store.commit('updateLoginInfo', loginParams)
-      this.$router.replace({ name: 'dashboard' })
+      if (loginParams) {
+        this.$store.commit('updateLoginInfo', loginParams)
+        this.$router.replace({ name: 'dashboard' })
+      }
     }
   },
   methods: {

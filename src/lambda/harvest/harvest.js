@@ -20,8 +20,8 @@ exports.handler = async (event, context, callback) => {
 
       const data = {
         code,
-        client_id: process.env.HARVEST_CLIENT_ID,
-        client_secret: process.env.HARVEST_CLIENT_SECTRET,
+        client_id: process.env.VUE_APP_HARVEST_CLIENT_ID,
+        client_secret: process.env.VUE_APP_HARVEST_CLIENT_SECRET,
         grant_type: 'authorization_code'
       }
 

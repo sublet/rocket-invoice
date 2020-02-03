@@ -1,6 +1,8 @@
 // https://bitsofco.de/how-to-use-puppeteer-in-a-netlifyws-lambda-function/
 // https://github.com/ireade/netlify-puppeteer-screenshot-demo
 
+// ?download=true&token=1777746.at.vFOjQFR4MxM2S8bmfX9CiBOBYJc-vkaxZmU9-YEzZViTEsyA02a3aOTu-Ew8nJQUCspCD1WbYmKxNAXTePONJQ&scope=harvest:279302&from=2020-01-01&to=2020-01-31&rate=140
+
 require('dotenv').config()
 
 const chromium = require('chrome-aws-lambda')
@@ -18,7 +20,7 @@ exports.handler = async (event, context, callback) => {
     if (!to) throw new Error('You did not provide a to.')
     if (!rate) throw new Error('You did not provide a rate.')
 
-    url = `${url}/dashboard?download=true&token=${token}&scope=${scope}&dateFrom=${from}&dateTo=${to}&hourlyRate=${rate}`
+    url = `${url}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}`
 
     console.log('#### URL: ', url)
 
