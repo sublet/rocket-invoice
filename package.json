@@ -12,6 +12,7 @@
     "zipHarvest": "cd src/lambda/harvest && npm install && chmod -R 777 node_modules && zip -r harvest.zip *",
     "postzipHarvest": "mv src/lambda/harvest/harvest.zip lambda-build",
     "prebuild": "rm -rf lambda-build && mkdir lambda-build && npm run zipDownload && npm run zipHarvest",
+    "postbuild": "cp redirects.txt dist/_redirects",
     "start:lambda:harvest": "netlify-lambda serve src/lambda/harvest --config ./webpack.functions.js --port 9001",
     "start:lambda:download": "netlify-lambda serve src/lambda/invoice-download --config ./webpack.functions.js --port 9002",
     "start:lambda": "netlify-lambda serve src/lambda",
