@@ -10,7 +10,10 @@ require('dotenv').config()
 const chromium = require('chrome-aws-lambda')
 const puppeteer = require('puppeteer-core')
 
-let url = process.env.PUPPETEER_SITE
+let url = 'http://localhost:8080'
+if (process.env.NODE_ENV === 'production') {
+  url = 'https://rocket-invoices.netlify.com'
+}
 
 exports.handler = async (event, context, callback) => {
   try {
