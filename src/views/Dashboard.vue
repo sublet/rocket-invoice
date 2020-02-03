@@ -55,7 +55,7 @@
       </div>
       <div class="dataRow__item">
         <button class="butt" v-on:click="fetchLineItems()">Update</button>
-        <button class="butt" v-on:click="downloadPdf()">Download PDF</button>
+        <a v-bind:href="getDownloadLink" target="_blank" class="butt">Download</a>
       </div>
     </div>
   </div>
@@ -132,6 +132,11 @@ export default {
         })
       }
       return numeral(grandTotal).format('0,0.00')
+    },
+    getDownloadLink () {
+      const { token, scope } = this.$store.getters.tokenInfo
+
+      return `${process.env.VUE_APP_DOWNLOAD_LAMBDA}/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`
     }
   },
   methods: {
@@ -139,15 +144,6 @@ export default {
       const { token, scope } = this.$store.getters.tokenInfo
 
       const response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}/harvest?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
-      if (response && response.status === 200) {
-        const data = await response.json()
-        this.lineItems = data.time_entries
-      }
-    },
-    async downloadPdf () {
-      const { token, scope } = this.$store.getters.tokenInfo
-
-      const response = await fetch(`${process.env.VUE_APP_DOWNLOAD_LAMBDA}/invoice-download?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`)
       if (response && response.status === 200) {
         const data = await response.json()
         this.lineItems = data.time_entries
@@ -196,7 +192,7 @@ export default {
       &:last-child {
         width: 25%;
 
-        button:last-child {
+        a {
           margin-left: .5rem;
         }
       }
@@ -269,5 +265,6 @@ export default {
     border: 0;
     background: #333;
     color: #FFF;
+    text-decoration: none;
   }
 </style>
