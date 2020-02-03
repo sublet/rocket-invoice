@@ -15,6 +15,7 @@ __IMPORTANT:__ I am not knocking this new practice, I've owned my own business, 
 1. We host this on Netlify and utilize the [Netlify Functions](https://www.netlify.com/products/functions/).
 2. We use puppeteer to create a download or PDF
 3. Eventualy we save these PDF's to [Netlify Large Media](https://www.netlify.com/products/large-media/).
+4. There should probably be more, I just can't think of any right now.
 
 ### Netlify Functions
 
@@ -60,19 +61,6 @@ make test-unit
 make lint
 ```
 
-#### Help me!
+## Want to help make this better?
 
-Want to help?  Come get some. 
-
-https://rocket-invoices.netlify.com
-
-```
-cp env.sample .env
-```
-
-Get OAuth info: https://id.getharvest.com/developers
-
-Plug it in
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Want to help?  Come get some. Find me on Slack, or if you are old fashion, [email me](jeffhunter@rocketinsights.com)
