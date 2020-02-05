@@ -1,11 +1,10 @@
 
 <template>
   <div class="loginForm">
-    <img src="https://www.rocketinsights.com/images/rocket_partofdept_logo.svg" />
-    <p>Welcome to Rocket Invoice</p>
+    <p>Welcome to Invoicing</p>
     <p>A passive aggressive response to the redundancy that has fallen onto contractors, and an excuse to play with, and learn new technology.</p>
     <div>
-      <button type="button" class="butt" v-on:click="login()">Login Using Harvest</button>
+      <button type="button" class="butt" v-on:click="login()">Login</button>
     </div>
   </div>
 </template>

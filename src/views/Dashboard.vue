@@ -1,13 +1,13 @@
 
 <template>
 <div id="invoice">
-  <h1>My Harvest Timesheet as an Invoice</h1>
+  <h1>Invoice for {{ accountInfo.first_name }} {{ accountInfo.last_name }}</h1>
   <header class="wrapper" v-if="accountInfo !== null">
     <div>
       {{ accountInfo.first_name }} {{ accountInfo.last_name }}<br />
       {{ accountInfo.email }}
     </div>
-    <div style="text-align: center">
+    <div style="text-align: center; style: none;">
       HOW DO I GET<br />MY CAT PIC HERE?
     </div>
   </header>
@@ -15,7 +15,6 @@
     <table v-if="lineItems !== null">
       <thead>
         <tr>
-          <th>Labor ID</th>
           <th>Description</th>
           <th>Hours</th>
           <th>Rate</th>
@@ -24,14 +23,13 @@
       </thead>
       <tbody>
       <tr v-for="(item, index) in getLineItems" v-bind:key="index">
-        <td>{{ item.id }}</td>
         <td>Slaving away for <strong>{{ item.project.name }}</strong> on {{ item.spent_date }}</td>
         <td>{{ item.hours }} hours</td>
         <td>${{ item.rate }}</td>
         <td>${{ item.total }}</td>
       </tr>
       <tr class="total">
-        <td colspan="4">Grand Total</td>
+        <td colspan="3">Grand Total</td>
         <td>${{ getGrandTotal }}</td>
       </tr>
       </tbody>
@@ -244,7 +242,7 @@ export default {
     tbody td {
       text-align: center;
 
-      &:nth-child(2) {
+      &:nth-child(1) {
         text-align: left;
       }
     }
