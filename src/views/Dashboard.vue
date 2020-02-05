@@ -7,7 +7,7 @@
       {{ accountInfo.first_name }} {{ accountInfo.last_name }}<br />
       {{ accountInfo.email }}
     </div>
-    <div style="text-align: center; style: none;">
+    <div style="text-align: center; display: none;">
       HOW DO I GET<br />MY CAT PIC HERE?
     </div>
   </header>
