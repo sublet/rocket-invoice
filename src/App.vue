@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img class="appLogo" alt="Vue logo" src="https://www.rocketinsights.com/images/rocket_partofdept_logo.svg">
     <router-view @authenticated="setAuthenticated" />
   </div>
 </template>
