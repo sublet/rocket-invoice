@@ -4,8 +4,9 @@
   <h1>Invoice for {{ accountInfo.first_name }} {{ accountInfo.last_name }}</h1>
   <header class="wrapper" v-if="accountInfo !== null">
     <div>
-      {{ accountInfo.first_name }} {{ accountInfo.last_name }}<br />
-      {{ accountInfo.email }}
+      <p>Invoice #: {{ invoiceNumber }}</p>
+      <p>{{ accountInfo.first_name }} {{ accountInfo.last_name }}<br />{{ accountInfo.email }}</p>
+      <p>Account #: {{ accountNumber }}<br />Routing #: {{ routingNumber }}</p>
     </div>
     <div style="text-align: center; display: none;">
       HOW DO I GET<br />MY CAT PIC HERE?
@@ -49,6 +50,20 @@
         <label>Date To</label>
         <input v-model="dateTo">
       </div>
+      <div class="dataRow__item">
+        <label>Account</label>
+        <input v-model="accountNumber">
+      </div>
+      <div class="dataRow__item">
+        <label>Routing</label>
+        <input v-model="routingNumber">
+      </div>
+      <div class="dataRow__item">
+        <label>Invoice #</label>
+        <input v-model="invoiceNumber">
+      </div>
+    </div>
+    <div class="dataRow dataRow--bottom">
       <div class="dataRow__item dataRow__item--actions">
         <button class="butt" v-on:click="fetchLineItems()">Update</button>
         <a v-bind:href="getDownloadLink" target="_blank" class="butt">Download</a>
@@ -73,6 +88,9 @@ export default {
       dateFrom: moment().subtract(14, 'days').format('YYYY-MM-DD'),
       dateTo: moment().format('YYYY-MM-DD'),
       hourlyRate: 90,
+      invoiceNumber: null,
+      accountNumber: null,
+      routingNumber: null,
       accountInfo: null,
       lineItems: null,
       grandTotal: 0,
@@ -87,6 +105,9 @@ export default {
       this.dateFrom = queryParams.from
       this.dateTo = queryParams.to
       this.hourlyRate = queryParams.rate
+      this.invoiceNumber = queryParams.invoiceNumber
+      this.accountNumber = queryParams.accountNumber
+      this.routingNumber = queryParams.routingNumber
       this.isDownload = true
     }
 
@@ -98,14 +119,12 @@ export default {
     if (response && response.status === 200) {
       const data = await response.json()
       this.accountInfo = data.user
-      // console.log(data.user)
     }
 
     response = await fetch(`${process.env.VUE_APP_HARVEST_LAMBDA}?accessToken=${token}&scope=${scope}&type=timeEntriesList&from=${this.dateFrom}&to=${this.dateTo}`)
     if (response && response.status === 200) {
       const data = await response.json()
       this.lineItems = data.time_entries
-      // console.log(data.time_entries)
     }
   },
   computed: {
@@ -133,7 +152,7 @@ export default {
     getDownloadLink () {
       const { token, scope } = this.$store.getters.tokenInfo
 
-      return `${process.env.VUE_APP_DOWNLOAD_LAMBDA}?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}`
+      return `${process.env.VUE_APP_DOWNLOAD_LAMBDA}?token=${token}&scope=${scope}&from=${this.dateFrom}&to=${this.dateTo}&rate=${this.hourlyRate}&invoice=${this.invoiceNumber}&account=${this.accountNumber}&routing=${this.routingNumber}`
     }
   },
   methods: {
@@ -190,18 +209,13 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &__item {
       width: 18%;
+      margin-right: 1%;
 
       &:last-child {
-        width: 35%;
-
-        .butt {
-          margin-left: .5rem;
-          &:first-child {
-            margin-left: 0;
-          }
-        }
+        margin-right: 0;
       }
 
       label {
@@ -226,6 +240,21 @@ export default {
 
       &--actions {
         display: flex;
+        // justify-content: flex-end;
+
+        .butt {
+          margin-left: .5rem;
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    &--bottom {
+      margin-top: 1rem;
+      & > div {
+        width: 100%;
         justify-content: flex-end;
       }
     }
