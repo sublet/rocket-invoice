@@ -105,9 +105,9 @@ export default {
       this.dateFrom = queryParams.from
       this.dateTo = queryParams.to
       this.hourlyRate = queryParams.rate
-      this.invoiceNumber = queryParams.invoiceNumber
-      this.accountNumber = queryParams.accountNumber
-      this.routingNumber = queryParams.routingNumber
+      this.invoiceNumber = queryParams.invoice
+      this.accountNumber = queryParams.account
+      this.routingNumber = queryParams.routing
       this.isDownload = true
     }
 
