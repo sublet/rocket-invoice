@@ -23,7 +23,7 @@ exports.handler = async (event, context, callback) => {
     if (!account) throw new Error('You did not provide a Account Number.')
     if (!routing) throw new Error('You did not provide a Routing Number.')
 
-    let url = `${HOST_URI}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}&invoice=${this.invoice}&account=${this.account}&routing=${this.routing}`
+    let url = `${HOST_URI}/?download=true&token=${token}&scope=${scope}&from=${from}&to=${to}&rate=${rate}&invoice=${invoice}&account=${account}&routing=${routing}`
 
     console.log('Hitting this HOST_URI: ', HOST_URI)
     console.log('Hitting this URL: ', url)
