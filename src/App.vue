@@ -16,14 +16,14 @@ export default {
     const { download, code, scope } = this.$route.query
 
     if (download) {
-      const { token, scope, from, to, rate } = this.$route.query
+      const { token, scope, from, to, rate, invoice, account, routing } = this.$route.query
       const loginParams = {
         accessToken: token,
         scope: scope,
         expiresIn: 99999,
         refreshToken: token
       }
-      const query = { download: 'true', token, scope, from, to, rate }
+      const query = { download: 'true', token, scope, from, to, rate, invoice, account, routing }
       this.$store.commit('updateLoginInfo', loginParams)
       this.$router.push({ path: `dashboard`, query })
     } else {
