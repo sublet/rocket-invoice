@@ -134,6 +134,11 @@ export default {
         items = this.lineItems.map(itm => {
           itm.spent_date = moment(itm.spent_date, 'YYYY-MM-DD').format('LL')
           itm.rate = numeral(this.hourlyRate).format('0,0.00')
+          if (itm.project.name === 'Content Creation Extension 3') {
+            itm.rate = numeral(140).format('0,0.00')
+          } else {
+            itm.rate = numeral(this.hourlyRate).format('0,0.00')
+          }
           itm.total = numeral(itm.hours * this.hourlyRate).format('0,0.00')
           return itm
         })
@@ -144,7 +149,11 @@ export default {
       let grandTotal = 0
       if (this.lineItems) {
         this.lineItems.forEach(itm => {
-          grandTotal += (itm.hours * this.hourlyRate)
+          if (itm.project.name === 'Content Creation Extension 3') {
+            grandTotal += (itm.hours * 140)
+          } else {
+            grandTotal += (itm.hours * this.hourlyRate)
+          }
         })
       }
       return numeral(grandTotal).format('0,0.00')
