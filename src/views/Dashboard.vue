@@ -24,7 +24,7 @@
       </thead>
       <tbody>
       <tr v-for="(item, index) in getLineItems" v-bind:key="index">
-        <td>Slaving away for <strong>{{ item.project.name }}</strong> on {{ item.spent_date }}</td>
+        <td>Working hard for <strong>{{ item.project.name }}</strong> on {{ item.spent_date }}</td>
         <td>{{ item.hours }} hours</td>
         <td>${{ item.rate }}</td>
         <td>${{ item.total }}</td>
@@ -134,14 +134,15 @@ export default {
         items = this.lineItems.map(itm => {
           itm.spent_date = moment(itm.spent_date, 'YYYY-MM-DD').format('LL')
           itm.rate = numeral(this.hourlyRate).format('0,0.00')
-          if (itm.project.name === 'Content Creation Extension 3') {
-            itm.rate = numeral(140).format('0,0.00')
+          if (itm.project.name.toLowerCase().indexOf('covid') >= 0) {
+            itm.rate = numeral(100).format('0,0.00')
           } else {
             itm.rate = numeral(this.hourlyRate).format('0,0.00')
           }
           itm.total = numeral(itm.hours * this.hourlyRate).format('0,0.00')
           return itm
         })
+        console.log(items)
       }
       return items
     },
@@ -198,7 +199,7 @@ export default {
 
   #invoice {
     text-align: left;
-    padding-bottom: 100px;
+    padding-bottom: 140px;
 
     * {
       box-sizing: border-box;
