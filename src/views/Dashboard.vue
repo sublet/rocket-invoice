@@ -178,8 +178,6 @@ export default {
       }
     },
     logOut () {
-      const { token, scope } = this.$store.getters.tokenInfo
-
       this.$store.commit('logOut')
       localStorage.removeItem('userToken')
       this.$router.push('/')
