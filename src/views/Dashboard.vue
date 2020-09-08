@@ -142,7 +142,9 @@ export default {
           itm.total = numeral(itm.hours * this.hourlyRate).format('0,0.00')
           return itm
         })
+        /* eslint-disable */
         console.log(items)
+        /* eslint-enable */
       }
       return items
     },
