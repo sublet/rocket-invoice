@@ -152,8 +152,8 @@ export default {
       let grandTotal = 0
       if (this.lineItems) {
         this.lineItems.forEach(itm => {
-          if (itm.project.name === 'Content Creation Extension 3') {
-            grandTotal += (itm.hours * 140)
+          if (itm.project.name.toLowerCase().indexOf('covid') >= 0) {
+            grandTotal += (itm.hours * 100)
           } else {
             grandTotal += (itm.hours * this.hourlyRate)
           }
