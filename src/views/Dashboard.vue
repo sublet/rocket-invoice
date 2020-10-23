@@ -139,7 +139,7 @@ export default {
           } else {
             itm.rate = numeral(this.hourlyRate).format('0,0.00')
           }
-          itm.total = numeral(itm.hours * this.hourlyRate).format('0,0.00')
+          itm.total = numeral(itm.hours * this.rate).format('0,0.00')
           return itm
         })
         /* eslint-disable */
