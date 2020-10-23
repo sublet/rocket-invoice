@@ -139,7 +139,10 @@ export default {
           } else {
             itm.rate = numeral(this.hourlyRate).format('0,0.00')
           }
-          itm.total = numeral(itm.hours * this.rate).format('0,0.00')
+          itm.total = numeral(itm.hours * itm.rate).format('0,0.00')
+        /* eslint-disable */
+          console.log(itm.total, itm.hours, itm.rate)
+        /* eslint-enable */
           return itm
         })
         /* eslint-disable */
